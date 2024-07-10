@@ -15,7 +15,7 @@ app = FastAPI()
 def read_root():
     return {"Status": "Working"}
 
-@app.post("/extract_task_entities", response_model=TaskDetails)
+@app.post("/extract_task_entities", response_model=str)
 async def extract_task_entities(
     audio_file: UploadFile = File(...)
     ):
