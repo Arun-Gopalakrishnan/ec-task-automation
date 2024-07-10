@@ -36,6 +36,7 @@ def extract_audio(file_path):
     audio_file = open(file_path, "rb")
     transcription = client.audio.transcriptions.create(
         model="whisper-1", 
-        file=audio_file
+        file=audio_file,
+        response_format=TaskDetails
     )
     return transcription.text
