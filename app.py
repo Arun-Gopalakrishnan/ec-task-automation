@@ -4,7 +4,7 @@ from logging.config import dictConfig
 from logconfig import log_config
 import logging
 
-logger = logging.getLogger("exTaskAutomation")
+logger = logging.getLogger("exTaskAutomation-logger")
 
 st.title("EC - Task Automation")
 
