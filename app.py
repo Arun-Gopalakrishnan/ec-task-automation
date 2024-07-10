@@ -1,6 +1,6 @@
 import streamlit as st
 import logging
-from streamlit_utils import extract_task_entities, extract_text_from_audio
+from streamlit_utils import get_task_entities, get_text_from_audio
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +18,7 @@ if uploaded_file is not None:
     if st.button('Extract Entities'):
         with st.spinner(f"Parsing the file - {uploaded_file.name}..."):
             if uploaded_file is not None:
-                res = extract_task_entities(
+                res = get_task_entities(
                         uploaded_file
                     )
                 entities_json = res
@@ -26,10 +26,10 @@ if uploaded_file is not None:
                 st.write('Task Details:')
                 st.json(entities_json)
 
-                res = extract_text_from_audio(
+                res = get_text_from_audio(
                         uploaded_file
                     )
                 entities_text = res
                 st.success(f"Text extracted Successfully!")
                 st.write('Task Details:')
-                st.json(entities_text)
+                st.write(entities_text)
