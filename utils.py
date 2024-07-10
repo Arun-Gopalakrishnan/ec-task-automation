@@ -1,8 +1,8 @@
 from datetime import date
 from openai import OpenAI
-from typing import Literal, Type
+from typing import Literal, Optional, Type
 from mirascope.openai import OpenAIExtractor
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -11,8 +11,8 @@ class TaskDetails(BaseModel):
     task: str
     status: Literal["todo", "in-progress", "in-review", "completed"]
     duration: str
-    start: date
-    enddate: date    
+    start: Optional[date] = Field(None, title='task start date', ge=date.min, le=date.max)    
+    end: Optional[date] = Field(None, title='task end date', ge=date.min, le=date.max)    
     priority: Literal["low", "normal", "high"]
 
 
