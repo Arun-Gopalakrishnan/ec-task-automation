@@ -17,8 +17,16 @@ def get_api_response(URI, file):
     )
     return response
 
-def extract_task_entities(file):
-    return get_api_response(EXTRACT_TASK_ENTITIES_URI, file).json()
+def get_task_entities(file):
+    response = response = requests.post(
+        EXTRACT_TASK_ENTITIES_URI,
+        files = {"audio_file": (file.name, file, 'multipart/form-data')}
+    )
+    return response
 
-def extract_text_from_audio(file):
-    return get_api_response(EXTRACT_TEXT_FROM_AUDIO_URI, file)
+def get_text_from_audio(file):
+    response = response = requests.post(
+        EXTRACT_TEXT_FROM_AUDIO_URI,
+        files = {"audio_file": (file.name, file, 'multipart/form-data')}
+    )
+    return response
