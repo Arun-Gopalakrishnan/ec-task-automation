@@ -6,10 +6,17 @@ from utils import (
     extract_audio
 )
 import os
+from logging.config import dictConfig
+from logconfig import log_config
+import logging
+
+dictConfig(log_config)
 
 load_dotenv()
 
 app = FastAPI()
+
+logger = logging.getLogger("exTaskAutomation")
 
 @app.get("/")
 def read_root():
