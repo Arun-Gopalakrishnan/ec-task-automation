@@ -18,7 +18,7 @@ def get_api_response(URI, file):
     return response
 
 def extract_task_entities(file):
-    return get_api_response(EXTRACT_TASK_ENTITIES_URI, file)
+    return get_api_response(EXTRACT_TASK_ENTITIES_URI, file).json()
 
 def extract_text_from_audio(file):
     return get_api_response(EXTRACT_TEXT_FROM_AUDIO_URI, file)
