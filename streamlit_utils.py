@@ -11,4 +11,4 @@ def get_api_response(file):
         EXTRACT_URI,
         files={"audio_file": (file.name, file, 'multipart/form-data')}
     )
-    return response.json()
+    return response
