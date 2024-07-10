@@ -15,6 +15,8 @@ app = FastAPI()
 def read_root():
     return {"Status": "Working"}
 
+# query: Hey, I just completed my api development task, which is of high priority. I tool 2 days to complete it.
+
 @app.post("/extract_task_entities", response_model=TaskDetails)
 async def extract_task_entities(
     audio_file: UploadFile = File(...)
