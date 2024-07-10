@@ -18,6 +18,7 @@ if uploaded_file is not None:
     if st.button('Extract Entities'):
         with st.spinner(f"Parsing the file - {uploaded_file.name}..."):
             if uploaded_file is not None:
+                logger.info("Test")
                 res = get_api_response(
                         uploaded_file
                     )
