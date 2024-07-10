@@ -29,5 +29,5 @@ async def extract_task_entities(
     if os.path.exists(tempfile):
         os.remove(tempfile)
 
-    entities = extract_details(text)
-    return entities
+    #entities = extract_details(text)
+    return text
