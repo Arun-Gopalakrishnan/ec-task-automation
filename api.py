@@ -15,35 +15,25 @@ app = FastAPI()
 def read_root():
     return {"Status": "Working"}
 
+async def extract_data_from_audio(audio_file):
+    # save the audio file
+    file_extension = audio_file.filename.split(".")[-1]
+    tempfile = f"res/audio_file.{file_extension}"
+    with open(tempfile, "wb") as f:
+        f.write(audio_file.file.read())
+    text = extract_audio(tempfile)
+    if os.path.exists(tempfile):
+        os.remove(tempfile)        
+    return text
+
 @app.post("/extract_task_entities", response_model=TaskDetails)
 async def extract_task_entities(
     audio_file: UploadFile = File(...)
     ):
-    # save the audio file
-    file_extension = audio_file.filename.split(".")[-1]
-    tempfile = f"res/audio_file.{file_extension}"
-    with open(tempfile, "wb") as f:
-        f.write(audio_file.file.read())
-    text = extract_audio(tempfile)
-
-    if os.path.exists(tempfile):
-        os.remove(tempfile)
-
+    text = extract_data_from_audio(audio_file)    
     entities = extract_details(text)
     return entities
 
 @app.post("/extract_text_from_audio", response_model=str)
-async def extract_text_from_audio(
-    audio_file: UploadFile = File(...)
-    ):
-    # save the audio file
-    file_extension = audio_file.filename.split(".")[-1]
-    tempfile = f"res/audio_file.{file_extension}"
-    with open(tempfile, "wb") as f:
-        f.write(audio_file.file.read())
-    text = extract_audio(tempfile)
-
-    if os.path.exists(tempfile):
-        os.remove(tempfile)
-        
-    return text
+async def extract_text_from_audio(       
+    return extract_data_from_audio(audio_file)
