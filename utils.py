@@ -12,7 +12,7 @@ class TaskDetails(BaseModel):
     status: Literal["todo", "in-progress", "in-review", "completed"]
     duration: str
     start: Optional[date] = Field(None, title='task start date', ge=date.min, le=date.max)    
-    end: Optional[date] = Field(None, title='task end date', ge=date.min, le=date.max)    
+    enddate: Optional[date] = Field(None, title='task end date', ge=date.min, le=date.max)    
     priority: Literal["low", "normal", "high"]
 
 
