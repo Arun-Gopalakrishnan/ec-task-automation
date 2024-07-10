@@ -1,8 +1,10 @@
 import streamlit as st
-import logging
 from streamlit_utils import get_api_response
+from logging.config import dictConfig
+from logconfig import log_config
+import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("exTaskAutomation")
 
 st.title("EC - Task Automation")
 
@@ -22,7 +24,11 @@ if uploaded_file is not None:
                 res = get_api_response(
                         uploaded_file
                     )
-                entities_json = res
-                st.success(f"Entities extracted Successfully!")
-                st.write('Task Details:')
-                st.write(entities_json)
+                if res.startswith("Traceback"):
+                    st.write('Exception:')
+                    st.error(res)
+                else:                   
+                    st.success(f"Entities extracted Successfully!")
+                    st.write('Task Details:')
+                    entities_json = res
+                    st.write(entities_json)
