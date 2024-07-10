@@ -11,8 +11,8 @@ class TaskDetails(BaseModel):
     task: str
     status: Literal["todo", "in-progress", "in-review", "completed"]
     duration: str
-    startDate: str
-    endDate: str    
+    start: str
+    end: str    
     priority: Literal["low", "normal", "high"]
 
 
