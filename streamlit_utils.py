@@ -22,11 +22,11 @@ def get_task_entities(file):
         EXTRACT_TASK_ENTITIES_URI,
         files = {"audio_file": (file.name, file, 'multipart/form-data')}
     )
-    return response
+    return response.json()
 
 def get_text_from_audio(file):
     response = response = requests.post(
         EXTRACT_TEXT_FROM_AUDIO_URI,
         files = {"audio_file": (file.name, file, 'multipart/form-data')}
     )
-    return response
+    return response.content
