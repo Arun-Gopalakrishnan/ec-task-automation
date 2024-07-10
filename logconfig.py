@@ -17,6 +17,6 @@ log_config = {
         },
     },
     "loggers": {
-        "foo-logger": {"handlers": ["default"], "level": "DEBUG"},
+        "exTaskAutomation-logger": {"handlers": ["default"], "level": "DEBUG"},
     },
 }
