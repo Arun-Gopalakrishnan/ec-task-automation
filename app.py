@@ -4,7 +4,7 @@ from streamlit_utils import get_api_response
 
 logger = logging.getLogger(__name__)
 
-st.title("ASR based Task Automation")
+st.title("EC - Task Automation")
 
 supported_files = ['mp3', 'mp4', 'mpeg', 'mpga', 'm4a', 'wav', 'webm']
 
