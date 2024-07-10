@@ -1,6 +1,6 @@
 import streamlit as st
 import logging
-from streamlit_utils import get_task_entities, get_text_from_audio
+from streamlit_utils import get_api_response
 
 logger = logging.getLogger(__name__)
 
