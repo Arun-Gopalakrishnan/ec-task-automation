@@ -18,18 +18,10 @@ if uploaded_file is not None:
     if st.button('Extract Entities'):
         with st.spinner(f"Parsing the file - {uploaded_file.name}..."):
             if uploaded_file is not None:
-                res = get_task_entities(
+                res = get_api_response(
                         uploaded_file
                     )
                 entities_json = res
                 st.success(f"Entities extracted Successfully!")
                 st.write('Task Details:')
                 st.json(entities_json)
-
-                res = get_text_from_audio(
-                        uploaded_file
-                    )
-                entities_text = res
-                st.success(f"Text extracted Successfully!")
-                st.write('Task Details:')
-                st.write(entities_text)
