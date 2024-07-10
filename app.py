@@ -24,4 +24,4 @@ if uploaded_file is not None:
                 entities_json = res
                 st.success(f"Entities extracted Successfully!")
                 st.write('Task Details:')
-                st.json(entities_json)
+                st.write(entities_json)
