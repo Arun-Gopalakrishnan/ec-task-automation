@@ -1,4 +1,4 @@
-from click import DateTime
+from datetime import date
 from openai import OpenAI
 from typing import Literal, Type
 from mirascope.openai import OpenAIExtractor
@@ -11,8 +11,8 @@ class TaskDetails(BaseModel):
     task: str
     status: Literal["todo", "in-progress", "in-review", "completed"]
     duration: str
-    start: str
-    enddate: str    
+    start: date
+    end: date    
     priority: Literal["low", "normal", "high"]
 
 
