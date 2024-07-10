@@ -13,10 +13,3 @@ def get_api_response(file):
         files={"audio_file": (file.name, file, 'multipart/form-data')}
     )
     return response.json()
-
-def get_api_response_as_text(file):
-    response = response = requests.post(
-        EXTRACT_TEXT_FROM_AUDIO_URI,
-        files={"audio_file": (file.name, file, 'multipart/form-data')}
-    )
-    return response.text
