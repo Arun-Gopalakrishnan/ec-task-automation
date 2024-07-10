@@ -16,7 +16,7 @@ load_dotenv()
 
 app = FastAPI()
 
-logger = logging.getLogger("exTaskAutomation")
+logger = logging.getLogger("exTaskAutomation-logger")
 
 @app.get("/")
 def read_root():
