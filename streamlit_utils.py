@@ -5,7 +5,7 @@ import os
 load_dotenv()
 
 # EXTRACT_URI = 'https://ec-task-automation.streamlit.app/extract_task_entities'
-EXTRACT_URI = 'http://127.0.0.1:8000/extract_task_entities'
+EXTRACT_URI = 'https://fastapi-example-p197.onrender.com/extract_task_entities'
 
 def get_api_response(file):
     response = response = requests.post(
