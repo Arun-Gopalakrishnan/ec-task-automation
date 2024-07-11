@@ -29,13 +29,14 @@ def extract_details(task: str) -> TaskDetails:
     task_details = TaskExtractor(task=task).extract()
     return task_details
 
-
-def extract_audio(file_path):
-    client = OpenAI()
-
-    audio_file = open(file_path, "rb")    
-    transcription = client.audio.transcriptions.create(
-        #model="whisper-1", 
-        file=audio_file
-    )
-    return transcription.text
+def extract_audio(file_path) -> str:
+    try:
+        client = OpenAI()
+        audio_file = open(file_path, "rb")    
+        transcription = client.audio.transcriptions.create(
+            model="whisper-1",
+            file=audio_file
+        )
+        return "{ apiKey: %s, project: %s, organization:%s }" % (client.api_key, client.project, client.organization)
+    except Exception as e:
+        return ("[Exception in extract_audio]: ", e)
