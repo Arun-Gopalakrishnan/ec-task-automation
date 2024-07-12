@@ -1,3 +1,4 @@
+import json
 from pydantic import BaseModel
 import streamlit as st
 from streamlit_utils import extract_from_audio, extract_from_text
@@ -7,6 +8,10 @@ import logging
 import requests
 from typing import TypeVar, Type
 from utils import APIResponse
+from utils import (
+    TaskInfo,
+    APIResponse
+)
 
 dictConfig(log_config)
 logger = logging.getLogger("exTaskAutomation-logger")
@@ -58,8 +63,10 @@ if st.button('Extract Entities'):
                     showErrorInfo(e)
     elif task.count(task) > 0:
         try:
+            taskInfo = TaskInfo()
+            taskInfo.text = task
             res = extract_from_text(
-                                    task
+                                    taskInfo
                                 )
             showOutput(res)
         except Exception as e:
