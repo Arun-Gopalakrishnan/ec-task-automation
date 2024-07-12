@@ -25,11 +25,17 @@ class TaskExtractor(OpenAIExtractor[TaskDetails]):
     """
     task: str
 
+class TaskInfo(BaseModel):
+    text:str = ''
+    def serialize(self):
+        if self.text is not None:
+            return {"text": self.text}        
+
 class APIInput:
     url: str
     method: str = 'GET'
     fileInfo: any
-    data: str
+    data: any
 
     def __init__(self, url: str, method: str = None):
         self.url = url
@@ -43,8 +49,8 @@ class APIInput:
         return cls(url, method)
     
     @classmethod
-    def using_data(cls, url: str, method: str, data: str):
-        cls.data = data
+    def using_data(cls, url: str, method: str, data: any):
+        cls.data = data.serialize()
         return cls(url, method)
 
 class APIResponse:
