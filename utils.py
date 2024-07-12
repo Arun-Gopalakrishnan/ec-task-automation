@@ -29,20 +29,22 @@ class APIInput:
     url: str
     method: str = 'GET'
     fileInfo: any
-    data: any
+    data: str
 
-    def __init__(self, url: str, method: str = None, data: any = None):
+    def __init__(self, url: str, method: str = None):
         self.url = url
 
         if method is not None:           
             self.method = method
 
-        if data is not None:           
-            self.data = data
-
     @classmethod
-    def using_fileInfo(cls, url, method, fileInfo):
+    def using_fileInfo(cls, url: str, method: str, fileInfo):
         cls.fileInfo = fileInfo
+        return cls(url, method)
+    
+    @classmethod
+    def using_data(cls, url: str, method: str, data: str):
+        cls.data = data
         return cls(url, method)
 
 class APIResponse:
