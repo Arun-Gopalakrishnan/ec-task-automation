@@ -1,1 +1,1 @@
-# ec-task-automation-ec
+# ec-task-automation
