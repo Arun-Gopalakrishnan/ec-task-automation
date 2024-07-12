@@ -23,31 +23,31 @@ def compose_response_obj(response: requests.Response) -> APIResponse:
     return res
 
 def get_api_response(apiInput: APIInput):
-    if apiInput.method.__eq__("POST"):
-        if apiInput.fileInfo is not None:
+    if apiInput.method.__eq__("POST"):                  
+        if hasattr(apiInput, 'fileInfo') and apiInput.fileInfo is not None:
             response = response = requests.post(
                 url = apiInput.url,
                 files = apiInput.fileInfo     
             )
-        elif apiInput.data is not None:
+        elif hasattr(apiInput, 'data') and apiInput.data is not None:
             response = response = requests.post(
                 url = apiInput.url,
-                json =  apiInput.data     
+                json =  apiInput.data
             )
         else:
             response = response = requests.post(
                 url = apiInput.url     
-            )            
+            )
     elif apiInput.method.__eq__("PUT"):
-        if apiInput.fileInfo is not None:
+        if hasattr(apiInput, 'fileInfo') and apiInput.fileInfo is not None:
             response = response = requests.put(
                 url = apiInput.url,
                 files = apiInput.fileInfo     
             )
-        elif apiInput.data is not None:
+        elif hasattr(apiInput, 'data') and apiInput.data is not None:
             response = response = requests.put(
                 url = apiInput.url,
-                json =  apiInput.data     
+                json =  apiInput.data
             )
         else:
             response = response = requests.put(
@@ -65,15 +65,15 @@ def get_api_response(apiInput: APIInput):
 
 def extract_from_audio(file) -> APIResponse:
     try:
-        apiInput = APIInput.using_fileInfo(EXTRACT_FROM_AUDIO_URI, "POST", {"audio_file": (file.name, file, 'multipart/form-data')})
+        apiInput = APIInput.using_fileInfo(EXTRACT_FROM_AUDIO_URI, "POST", {"audio_file": (file.name, file, 'multipart/form-data')})        
         response = get_api_response(apiInput)
         return compose_response_obj(response)
     except Exception as e:
         raise Exception ("[Exception in extract_from_audio]: ", e)
 
-def extract_from_text(task) -> APIResponse:
+def extract_from_text(data) -> APIResponse:
     try:        
-        apiInput = APIInput(EXTRACT_FROM_TEXT_URI, "POST", task)
+        apiInput = APIInput.using_data(EXTRACT_FROM_TEXT_URI, "POST", data)        
         response = get_api_response(apiInput)
         return compose_response_obj(response)
     except Exception as e:
