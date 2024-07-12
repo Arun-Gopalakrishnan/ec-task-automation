@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from utils import (
     extract_details,
     TaskDetails,
+    TaskInfo,
     extract_audio
 )
 import os
@@ -23,14 +24,14 @@ def read_root():
     return {"Status": "Working"}
 
 @app.post("/extract_task_entity_from_text", response_model=TaskDetails)
-async def extract_task_entities(task: any):   
+async def extract_task_entity_from_text(task:TaskInfo):   
     #task: str = "Hi, this is Arun with a quick update on my current task status. Today we discussed about a task S456 for more than 30 minutes and its expected end is today."
-    # entities = extract_details(task)
-    # entities.text = task
-    return task
+    entities = extract_details(task.text)
+    entities.text = task
+    return entities
 
 @app.post("/extract_task_entity_from_audio", response_model=TaskDetails)
-async def extract_task_entities(
+async def extract_task_entity_from_audio(
     audio_file: UploadFile = File(...)
     ):
     # save the audio file
